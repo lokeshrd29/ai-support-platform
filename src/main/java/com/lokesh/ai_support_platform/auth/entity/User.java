@@ -1,5 +1,6 @@
 package com.lokesh.ai_support_platform.auth.entity;
 
+import com.lokesh.ai_support_platform.common.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,8 +28,9 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private int role;
+    private Role role;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
