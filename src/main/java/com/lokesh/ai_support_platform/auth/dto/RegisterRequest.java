@@ -1,5 +1,6 @@
 package com.lokesh.ai_support_platform.auth.dto;
 
+import com.lokesh.ai_support_platform.common.enums.Role;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,6 @@ public class RegisterRequest {
     private String userName ;
     private String email ;
     private String password ;
-    private int role ;
+    private Role role ;
 
 }
