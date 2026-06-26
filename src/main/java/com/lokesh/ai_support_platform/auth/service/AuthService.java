@@ -6,6 +6,7 @@ import com.lokesh.ai_support_platform.auth.entity.User;
 import com.lokesh.ai_support_platform.auth.exception.InvalidCredentialsException;
 import com.lokesh.ai_support_platform.auth.exception.UserAlreadyExistsException;
 import com.lokesh.ai_support_platform.auth.repository.UserRepository;
+import com.lokesh.ai_support_platform.common.enums.Role;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +39,9 @@ public class AuthService {
                 .userName(request.getUserName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
+                .role(Role.ROLE_CUSTOMER)
+                .requestedRole(request.getRequestedRole())
+                .enabled(true)
                 .build();
 
         userRepository.save(user);

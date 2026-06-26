@@ -2,6 +2,7 @@ package com.lokesh.ai_support_platform.common.exception;
 
 import com.lokesh.ai_support_platform.auth.exception.InvalidCredentialsException;
 import com.lokesh.ai_support_platform.auth.exception.UserAlreadyExistsException;
+import com.lokesh.ai_support_platform.auth.exception.UserNotFoundException;
 import com.lokesh.ai_support_platform.auth.exception.UsernameNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +38,15 @@ public class GlobalExceptionHandler {
     {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
+                .body(ex.getMessage());
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<String> userNotFound(
+            UserNotFoundException ex
+    )
+    {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ex.getMessage());
     }
 }

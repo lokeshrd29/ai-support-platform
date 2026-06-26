@@ -32,7 +32,14 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    private Role requestedRole;
+
+    @Column(nullable = false)
+    private Boolean enabled = true;
+
+    @Column(nullable = false,updatable = false)
     private LocalDateTime createdAt;
 
     @PrePersist

@@ -5,6 +5,7 @@ import com.lokesh.ai_support_platform.auth.dto.RegisterRequest;
 import com.lokesh.ai_support_platform.auth.service.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class AuthController {
     private final AuthService authService ;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegisterRequest request)
+    public ResponseEntity<String> register(@Valid @RequestBody RegisterRequest request)
     {
         return ResponseEntity.ok(authService.register(request));
     }
