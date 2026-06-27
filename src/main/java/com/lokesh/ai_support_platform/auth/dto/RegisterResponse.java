@@ -1,6 +1,5 @@
 package com.lokesh.ai_support_platform.auth.dto;
 
-import com.lokesh.ai_support_platform.common.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,8 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class LoginResponse {
-    private String token ;
+public class RegisterResponse {
     private String userName ;
-    private Role role ;
+    private String message ;
 }

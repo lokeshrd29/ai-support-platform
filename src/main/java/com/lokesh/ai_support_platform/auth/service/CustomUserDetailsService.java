@@ -1,0 +1,25 @@
+package com.lokesh.ai_support_platform.auth.service;
+
+import com.lokesh.ai_support_platform.auth.exception.UsernameNotFoundException;
+import com.lokesh.ai_support_platform.auth.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+public class CustomUserDetailsService implements UserDetailsService {
+
+    private final UserRepository userRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(String username)
+            throws UsernameNotFoundException {
+
+        return userRepository.getUserByUserName(username)
+                .orElseThrow(() ->
+                        new UsernameNotFoundException("User not found"));
+    }
+
+}
