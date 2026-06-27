@@ -1,6 +1,7 @@
 package com.lokesh.ai_support_platform.auth.controller;
 
 import com.lokesh.ai_support_platform.auth.dto.LoginRequest;
+import com.lokesh.ai_support_platform.auth.dto.LoginResponse;
 import com.lokesh.ai_support_platform.auth.dto.RegisterRequest;
 import com.lokesh.ai_support_platform.auth.service.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ public class AuthController {
     private final AuthService authService ;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@Valid @RequestBody RegisterRequest request)
+    public ResponseEntity<LoginResponse> register(@Valid @RequestBody RegisterRequest request)
     {
         return ResponseEntity.ok(authService.register(request));
     }

@@ -1,6 +1,7 @@
 package com.lokesh.ai_support_platform.auth.service;
 
 import com.lokesh.ai_support_platform.auth.dto.LoginRequest;
+import com.lokesh.ai_support_platform.auth.dto.LoginResponse;
 import com.lokesh.ai_support_platform.auth.dto.RegisterRequest;
 import com.lokesh.ai_support_platform.auth.entity.User;
 import com.lokesh.ai_support_platform.auth.exception.InvalidCredentialsException;
@@ -21,7 +22,7 @@ public class AuthService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public String register(RegisterRequest request) {
+    public LoginResponse register(RegisterRequest request) {
 
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new UserAlreadyExistsException(
@@ -46,7 +47,10 @@ public class AuthService {
 
         userRepository.save(user);
 
-        return "User Registered Successfully";
+        return new LoginResponse(
+                request.getUserName(),
+                "User Registered Successfully"
+        );
     }
 
     public String login(LoginRequest loginRequest,
